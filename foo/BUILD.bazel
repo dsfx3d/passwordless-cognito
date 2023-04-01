@@ -1,9 +1,0 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
-
-lib_name = package_name()
-
-ts_project(
-  # a name for this target
-  name = lib_name,
-  srcs = glob(["*.ts"]),
-)

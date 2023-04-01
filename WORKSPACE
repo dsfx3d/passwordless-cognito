@@ -47,9 +47,6 @@ npm_translate_lock(
 )
 ### End Bazel rules for Aspect rules for JS
 
-load("@npm//:repositories.bzl", "npm_repositories")
-npm_repositories()
-
 http_archive(
     name = "aspect_rules_ts",
     sha256 = "8eb25d1fdafc0836f5778d33fb8eaac37c64176481d67872b54b0a05de5be5c0",
@@ -76,3 +73,34 @@ rules_ts_dependencies(
     # ts_version = LATEST_VERSION
 )
 
+http_archive(
+    name = "aspect_rules_esbuild",
+    sha256 = "f05e9a53ae4b394ca45742ac35f7e658a8ba32cba14b5d531b79466ae86dc7f0",
+    strip_prefix = "rules_esbuild-0.14.0",
+    url = "https://github.com/aspect-build/rules_esbuild/archive/refs/tags/v0.14.0.tar.gz",
+)
+
+######################
+# rules_esbuild setup #
+######################
+
+# Fetches the rules_esbuild dependencies.
+# If you want to have a different version of some dependency,
+# you should fetch it *before* calling this.
+# Alternatively, you can skip calling this function, so long as you've
+# already fetched all the dependencies.
+load("@aspect_rules_esbuild//esbuild:dependencies.bzl", "rules_esbuild_dependencies")
+
+rules_esbuild_dependencies()
+
+# Register a toolchain containing esbuild npm package and native bindings
+load("@aspect_rules_esbuild//esbuild:repositories.bzl", "LATEST_VERSION", "esbuild_register_toolchains")
+
+esbuild_register_toolchains(
+    name = "esbuild",
+    esbuild_version = LATEST_VERSION,
+)
+
+
+load("@npm//:repositories.bzl", "npm_repositories")
+npm_repositories()
