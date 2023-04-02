@@ -10,6 +10,7 @@ specifiers:
   '@types/node': ^18.15.11
   aws-cdk: ^2.72.1
   esbuild: ^0.17.0
+  node-zip: ^1.1.1
   typescript: 4.9.5
 
 devDependencies:
@@ -22,6 +23,7 @@ devDependencies:
   '@types/node': 18.15.11
   aws-cdk: 2.72.1
   esbuild: 0.17.14
+  node-zip: 1.1.1
   typescript: 4.9.5
 
 packages:
@@ -1576,6 +1578,12 @@ packages:
     resolution: {integrity: sha512-S6cATIPVv1z0IlxdN+zUk5EPjkGCdnhN4wVSBlvoUO1tOLJootbo9CquNJmbIh4yikWHiUedhRYrNPn1arpEmQ==}
     dev: true
 
+  /jszip/2.5.0:
+    resolution: {integrity: sha512-IRoyf8JSYY3nx+uyh5xPc0qdy8pUDTp2UkHOWYNF/IO/3D8nx7899UlSAjD8rf8wUgOmm0lACWx/GbW3EaxIXQ==}
+    dependencies:
+      pako: 0.2.9
+    dev: true
+
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
@@ -1587,6 +1595,17 @@ packages:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
       brace-expansion: 1.1.11
+    dev: true
+
+  /node-zip/1.1.1:
+    resolution: {integrity: sha512-sXfGL65EcaAJqNSXxuyf//i4D4geUtJgZDYUd7IBo2/CH8XY8vcWh1+CBCxuVVyR+S4vAFc3hr//JkCi2+V5vg==}
+    hasBin: true
+    dependencies:
+      jszip: 2.5.0
+    dev: true
+
+  /pako/0.2.9:
+    resolution: {integrity: sha512-NUcwaKxUxWrZLpDG+z/xZaCgQITkA/Dv4V/T6bw7VON6l1Xz/VnrBqrYjZQ12TamKHzITTfOEIYUj48y2KXImA==}
     dev: true
 
   /punycode/2.3.0:
