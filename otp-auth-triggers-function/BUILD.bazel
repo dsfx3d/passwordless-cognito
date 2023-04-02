@@ -1,0 +1,19 @@
+# load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
+load("//esbuild:index.bzl", "esbuild")
+load("//lambda-builder:index.bzl", "lambda_bundle")
+
+package(default_visibility = ["//visibility:public"])
+
+lib_name = package_name()
+
+deps = [
+  "//:node_modules/@aws-sdk/client-ses",
+  "//:node_modules/@types/aws-lambda"
+]
+
+lambda_bundle(
+  name = lib_name,
+  entry_point = "handler.ts",
+  srcs = glob(["*.ts"]),
+  deps = deps
+)
