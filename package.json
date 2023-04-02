@@ -6,6 +6,7 @@
   "private": true,
   "devDependencies": {
     "@aws-cdk/aws-cognito": "^1.198.1",
+    "@aws-cdk/aws-lambda": "^1.198.1",
     "@aws-cdk/aws-s3": "^1.198.1",
     "@aws-cdk/core": "^1.198.1",
     "@aws-sdk/client-ses": "^3.303.0",

@@ -1,43 +1,34 @@
 import { Construct, CfnOutput, Stack, StackProps } from '@aws-cdk/core';
-import * as cognito from '@aws-cdk/aws-cognito';
-
-export interface CognitoUserPoolStackProps extends StackProps {
-  userPoolName: string;
-}
+import { AccountRecovery, UserPool } from '@aws-cdk/aws-cognito';
+import { CognitoStackProps } from './CognitoStackProps';
+import { TriggerHandlerConstruct } from './TriggerHandlerConstruct';
 
 export class CognitoStack extends Stack {
-  public readonly userPool: cognito.UserPool;
+  readonly userPool: UserPool;
 
-  constructor(scope: Construct, id: string, props: CognitoUserPoolStackProps) {
+  constructor(scope: Construct, id: string, props: CognitoStackProps) {
     super(scope, id, props);
+    const triggerHandler = new TriggerHandlerConstruct(this, 'TriggerHandler')
 
     // Create a Cognito User Pool
-    this.userPool = new cognito.UserPool(this, 'UserPool', {
+    this.userPool = new UserPool(this, 'UserPool', {
+      lambdaTriggers: {
+        createAuthChallenge: triggerHandler.function,
+        defineAuthChallenge: triggerHandler.function,
+        verifyAuthChallengeResponse: triggerHandler.function,
+      },
       userPoolName: props.userPoolName,
       selfSignUpEnabled: true,
-      signInAliases: {
-        email: true,
-        phone: false,
-        username: true,
-      },
-      autoVerify: {
-        email: true,
-        phone: false,
-      },
+      signInAliases: { email: true },
+      autoVerify: { email: true },
       standardAttributes: {
         email: {
           required: true,
           mutable: true,
         },
       },
-      passwordPolicy: {
-        minLength: 8,
-        requireLowercase: true,
-        requireUppercase: true,
-        requireDigits: true,
-        requireSymbols: true,
-      },
-      accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
+      passwordPolicy: { minLength: 32 },
+      accountRecovery: AccountRecovery.NONE,
     });
 
     // Output the User Pool ID

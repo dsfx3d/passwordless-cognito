@@ -1,6 +1,6 @@
-load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("@npm//:aws-cdk/package_json.bzl", "bin")
+load("//esbuild:index.bzl", "esbuild")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -9,18 +9,15 @@ lib_name = package_name()
 deps = [
   "//:node_modules/@aws-cdk/core",
   "//:node_modules/@aws-cdk/aws-cognito",
-  "//:node_modules/@types/node",
-  "//:node_modules/@jgoz/esbuild-plugin-typecheck",
-  "//:tsconfig_base"
+  "//cdk"
 ]
 
 esbuild(
   name = lib_name,
   entry_point = "main.ts",
-  srcs = glob(["*.ts"]) + deps + ["tsconfig.json"],
-  config = "buildConfig.mjs",
+  srcs = glob(["*.ts"]),
+  deps = deps,
   platform = "node",
-  minify = True,
 )
 
 js_binary(
