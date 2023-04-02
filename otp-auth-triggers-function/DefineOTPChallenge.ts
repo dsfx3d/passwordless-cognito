@@ -1,10 +1,12 @@
 import { Callback, DefineAuthChallengeTriggerEvent, DefineAuthChallengeTriggerHandler } from "aws-lambda";
 import { ChallengeName } from "./ChallengeName";
 import { TriggerHandler } from "./TriggerHandler";
+import { AuthTriggerEvent } from "./AuthTriggerEvent";
 
 export class DefineOTPChallenge {
   get handler(): TriggerHandler {
-    return async (event: DefineAuthChallengeTriggerEvent, callback: Callback) => {
+    return async (event: AuthTriggerEvent, callback: Callback) => {
+      event = event as DefineAuthChallengeTriggerEvent;
       if (this.isChallengeCompleted(event)) {
         callback(null, this.toAuthSuccessEvent(event));
       } else {

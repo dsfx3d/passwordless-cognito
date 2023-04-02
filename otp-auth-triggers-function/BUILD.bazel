@@ -1,5 +1,3 @@
-# load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
-load("//esbuild:index.bzl", "esbuild")
 load("//lambda-builder:index.bzl", "lambda_bundle")
 
 package(default_visibility = ["//visibility:public"])

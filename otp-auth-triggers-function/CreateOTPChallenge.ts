@@ -5,15 +5,19 @@ import { ChallengeType } from "./ChallengeType";
 import { genOTP } from "./genOTP";
 import { TriggerHandler } from "./TriggerHandler";
 import { EnvVar } from "./EnvVar";
+import { AuthTriggerEvent } from "./AuthTriggerEvent";
 
 export class CreateOTPChallenge {
   constructor(private ses: SES) { }
 
   get handler(): TriggerHandler {
-    return async (event: CreateAuthChallengeTriggerEvent, callback: Callback) => {
+    return async (event: AuthTriggerEvent, callback: Callback) => {
       const otp = genOTP();
       await this.sendEmail(event.request.userAttributes.email, otp);
-      callback(null, this.toOTPChallengeEvent(event, otp));
+      callback(null, this.toOTPChallengeEvent(
+        event as CreateAuthChallengeTriggerEvent,
+        otp
+      ));
     }
   }
 
