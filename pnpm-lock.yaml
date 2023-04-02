@@ -5,6 +5,7 @@ specifiers:
   '@aws-cdk/aws-s3': ^1.198.1
   '@aws-cdk/core': ^1.198.1
   '@jgoz/esbuild-plugin-typecheck': ^3.0.2
+  '@types/aws-lambda': ^8.10.114
   '@types/node': ^18.15.11
   aws-cdk: ^2.72.1
   esbuild: ^0.17.0
@@ -15,6 +16,7 @@ devDependencies:
   '@aws-cdk/aws-s3': 1.198.1_@aws-cdk+core@1.198.1
   '@aws-cdk/core': 1.198.1
   '@jgoz/esbuild-plugin-typecheck': 3.0.2_mut6c4e4msx4pf43c6audqetzm
+  '@types/aws-lambda': 8.10.114
   '@types/node': 18.15.11
   aws-cdk: 2.72.1
   esbuild: 0.17.14
@@ -164,6 +166,7 @@ packages:
       '@aws-cdk/core': 1.198.1
       '@aws-cdk/custom-resources': 1.198.1_hyd7borwyshlvylzj4ofnaxtu4
       constructs: 3.4.290
+      punycode: 2.3.0
     transitivePeerDependencies:
       - '@aws-cdk/aws-s3'
     dev: true
@@ -731,6 +734,10 @@ packages:
       typescript: 4.9.5
     dev: true
 
+  /@types/aws-lambda/8.10.114:
+    resolution: {integrity: sha512-M8WpEGfC9iQ6V2Ccq6nGIXoQgeVc6z0Ngk8yCOL5V/TYIxshvb0MWQYLFFTZDesL0zmsoBc4OBjG9DB/4rei6w==}
+    dev: true
+
   /@types/node/18.15.11:
     resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
     dev: true
@@ -848,6 +855,11 @@ packages:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
       brace-expansion: 1.1.11
+    dev: true
+
+  /punycode/2.3.0:
+    resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
+    engines: {node: '>=6'}
     dev: true
 
   /semver/7.3.8:

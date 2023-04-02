@@ -9,6 +9,7 @@
     "@aws-cdk/aws-s3": "^1.198.1",
     "@aws-cdk/core": "^1.198.1",
     "@jgoz/esbuild-plugin-typecheck": "^3.0.2",
+    "@types/aws-lambda": "^8.10.114",
     "@types/node": "^18.15.11",
     "aws-cdk": "^2.72.1",
     "esbuild": "^0.17.0",
