@@ -1,4 +1,4 @@
 export enum ChallengeParam {
   Type = "type",
-  Key = "key",
+  OTP = "otp",
 }
